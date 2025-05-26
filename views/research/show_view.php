@@ -7,7 +7,7 @@
             <div class="research-header">
                 <div class="research-header-content">
                     <div class="research-header-image">
-                        <img src="views/media/images/<?php echo $researche['0']['thumbnail_url'] ?? "mg.png" ?>" alt="صورة البحث">
+                        <img src="views/media/images/<?php echo $researches['0']['thumbnail_url'] ?? "mg.png" ?>" alt="صورة البحث">
                     </div>
                     <div class="research-header-info">
                         <span class="research-category">علوم الحاسب</span>
@@ -70,14 +70,16 @@
                         </div>
                         
                         <div class="research-actions-large">
+                            
                             <a href="#" class="btn btn-large download-btn"><i class="fas fa-download"></i> تحميل البحث</a>
-                            <a href="#" class="btn btn-large cite-btn"><i class="fas fa-quote-right"></i> قراءةالبحث </a>
+                            <button href="#" class="btn btn-large cite-btn" onclick="location.href='#bottom'"><i class="fas fa-quote-right"></i> قراءةالبحث </button>
                             <button class="btn-icon save-research" title="حفظ في المفضلة"><i class="far fa-bookmark"></i></button>
                             <button class="btn-icon share-research" title="مشاركة"><i class="fas fa-share-alt"></i></button>
                         </div>
                     </div>
                 </div>
             </div>
+            
             
             <div class="research-tabs">
                 <button class="tab-btn active" data-tab="abstract">الملخص</button>
@@ -145,17 +147,10 @@
             </div>
             
             <div class="related-research">
-                <h2 class="section-title">أبحاث ذات صلة</h2>
-                <div class="research-grid">
-                    <div class="research-card">
-                        <!-- نفس هيكل بطاقات الأبحاث السابقة -->
-                    </div>
-                    <div class="research-card">
-                        <!-- نفس هيكل بطاقات الأبحاث السابقة -->
-                    </div>
-                    <div class="research-card">
-                        <!-- نفس هيكل بطاقات الأبحاث السابقة -->
-                    </div>
+                <h2 class="section-title"> قراءة البحث </h2>
+
+                <div class="pdf-container">
+                <iframe src="views/media/pdfs/<?php echo $researches['0']['pdf_url'] ?? "mg.png" ?>" width="100%" height="1000px" style="border:1px solid #ddd;"></iframe>
                 </div>
             </div>
         </div>

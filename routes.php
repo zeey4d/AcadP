@@ -18,6 +18,14 @@ $router->get('/contact', 'views/contact_view.php');
 $router->get('/manage_view', 'views/research/manage_view.php');
 $router->get('/research', 'views/research_view.php');
 $router->get('/create_view', 'views/research/create_view.php');
+$router->get('/research_view', 'views/research_view.php');
+
+
+
+
+$router->get('/pdfs_view', 'views/pdfs/pdfs_view.php');
+
+
 
 
 
@@ -25,16 +33,24 @@ $router->get('/create_view', 'views/research/create_view.php');
 //.......................
 
 $router->get('/', 'controlers/index.php');
-
 $router->get('/about', 'controlers/about.php');
-
 $router->get('/contact', 'controlers/contact.php');
+$router->get('/research', 'controlers/research.php');
+
+
+
+
+
 
 $router->get('/manage', 'controlers/research/manage.php');
-
 $router->get('/show', 'controlers/research/show.php');
+$router->get('/cart', 'controlers/cart.php')->only('registered');
+$router->post('/research_addff', 'controlers/research/add.php')->only('registered');
 
-$router->get('/cart', 'controlers/cart.php');
+
+
+$router->get('/pdf', 'controlers/pdf.php');
+
 
 // $router->get('/create', 'controlers/research/create.php')->only('guest');
 

@@ -42,7 +42,7 @@
             <a href="research-list.html" class="view-all">عرض الكل <i class="fas fa-arrow-left"></i></a>
         </div>
         <div class="research-grid">
-             <?php  foreach ($researches as $researche): ?>
+             <?php foreach ($researches as $researche): ?>
             <div class="research-card">
                  <a href="/show?research_id=<?= htmlspecialchars($researche['research_id']) ?>">
                 <div class="research-badge">

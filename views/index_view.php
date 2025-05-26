@@ -31,15 +31,12 @@
                 </div>
             </div>
             <div class="hero-image">
-                <img src="views/media/images/acad.png" alt="البحث العلمي">
+                <img src="views/media/images/acad2.png" alt="البحث العلمي">
             </div>
 
             <a href="/download?file=sciimm.pdf">تحميل</a>
 
-            <div class="pdf-container">
 
-            <iframe src="views/media/pdfs/sciimm.pdf" width="100%" height="100%" style="border:1px solid #ddd;"></iframe>
-        </div>
 
         <!-- <div class="pdf-viewer-container">
                     <iframe id="pdfViewerIframe" src="" width="100%" height="700px" frameborder="0">
@@ -87,6 +84,7 @@
             <a href="research-list.html" class="view-all">عرض الكل <i class="fas fa-arrow-left"></i></a>
         </div>
         <div class="research-grid">
+            
              <?php foreach ($researches as $researche): ?>
             <div class="research-card">
                  <a href="/show?research_id=<?= htmlspecialchars($researche['research_id']) ?>">
@@ -127,7 +125,10 @@
                     </div>
                     <div class="research-actions">
                         <a href="/show?research_id=<?= htmlspecialchars($researche['research_id']) ?>" class="btn read-more">قراءة البحث</a>
-                        <button class="btn-icon save-research" title="حفظ في المفضلة"><i class="far fa-bookmark"></i></button>
+                        <form action="/research_addff" method="POST">
+                        <input type="hidden" name="research_id" value="<?= $researche['research_id'] ?>">
+                        <button class="btn-icon save-research" type="submit" title="حفظ في المفضلة"><i class="far fa-bookmark">المفضلة</i></button>
+                        </form>
                         <button class="btn-icon share-research" title="مشاركة"><i class="fas fa-share-alt"></i></button>
                     </div>
                 </div>
