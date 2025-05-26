@@ -7,8 +7,8 @@
 <tr><th>ID</th><th>اسم المستخدم</th><th>البريد</th><th>الجامعة</th><th>الإجراءات</th></tr>
 <?php foreach ($users as $user): ?>
 <tr>
-    <td><?= $user['id'] ?></td>
-    <td><?= htmlspecialchars($user['username']) ?></td>
+    <td><?= $user['user_id'] ?></td>
+    <td><?= htmlspecialchars($user['first_name']) ?></td>
     <td><?= htmlspecialchars($user['email']) ?></td>
     <td><?= htmlspecialchars($user['university']) ?></td>
     <td>
