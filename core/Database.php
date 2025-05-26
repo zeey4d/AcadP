@@ -57,7 +57,7 @@ class Database
     private $conection;
     private $statement;
 
-    public function __construct($config, $dbName = 'root', $dbPass = 'AliAbd739252434')
+    public function __construct($config, $dbName = 'root', $dbPass = '')
     {
 
         $dsn = 'mysql:' . http_build_query($config, '', ';');
