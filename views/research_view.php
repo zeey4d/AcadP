@@ -43,7 +43,6 @@
         </div>
         <div class="research-grid">
 
-            <?php if(!empty($researches)):?>
              <?php  foreach ($researches as $researche): ?>
             <div class="research-card">
                  <a href="/show?research_id=<?= htmlspecialchars($researche['research_id']) ?>">
@@ -91,9 +90,7 @@
                 </a>
             </div>
             <?php endforeach; ?>
-            <?php else:?>
                     </div>
-                    <?php endif;?>
     </div> 
 </section>
 

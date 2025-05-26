@@ -20,7 +20,6 @@ $router->get('/contact', 'views/contact_view.php');
 
 // research page
 $router->get('/manage_view', 'views/research/manage_view.php');
-$router->get('/research', 'views/research_view.php');
 $router->get('/create_view', 'views/research/create_view.php');
 $router->get('/research_view', 'views/research_view.php');
 
