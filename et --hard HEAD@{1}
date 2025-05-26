@@ -1,0 +1,45 @@
+[33m8e68930[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m HEAD@{0}: reset: moving to ORIG_HEAD
+[33maa1bd79[m HEAD@{1}: reset: moving to ORIG_HEAD
+[33m8e68930[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m HEAD@{2}: reset: moving to ORIG_HEAD
+[33maa1bd79[m HEAD@{3}: reset: moving to ORIG_HEAD
+[33m8e68930[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m HEAD@{4}: reset: moving to HEAD~1
+[33maa1bd79[m HEAD@{5}: reset: moving to HEAD~1
+[33m201997f[m HEAD@{6}: reset: moving to HEAD~1
+[33m84ba77a[m HEAD@{7}: reset: moving to HEAD~1
+[33m7db5fd3[m HEAD@{8}: reset: moving to ORIG_HEAD
+[33m7db5fd3[m HEAD@{9}: reset: moving to HEAD~1
+[33m1e84830[m HEAD@{10}: commit: page
+[33m7db5fd3[m HEAD@{11}: commit: تست
+[33m84ba77a[m HEAD@{12}: commit: تحديث
+[33m201997f[m HEAD@{13}: commit: تحديث
+[33maa1bd79[m HEAD@{14}: commit: تحديث
+[33m8e68930[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m HEAD@{15}: commit: تست
+[33m5098de7[m HEAD@{16}: commit (merge): تست
+[33mbfd3d4b[m HEAD@{17}: commit: تست
+[33m2cacdfa[m HEAD@{18}: pull https://github.com/MohammedAli12345678/Badir.git: Fast-forward
+[33mf41eacb[m HEAD@{19}: commit: تحديث لكل الاخطا ان شاء الله
+[33mf011306[m HEAD@{20}: commit: تحديث لكل الاخطا ان شاء الله
+[33m59c73cd[m HEAD@{21}: commit (merge): زياد يحدث
+[33m206a3f1[m HEAD@{22}: checkout: moving from Zyad to main
+[33mdcd887e[m[33m ([m[1;31morigin/Zyad[m[33m, [m[1;32mZyad[m[33m)[m HEAD@{23}: commit (merge): تست
+[33me97dc96[m HEAD@{24}: commit: ت
+[33mb7cb149[m HEAD@{25}: commit: ت
+[33mb106726[m HEAD@{26}: commit (merge): ت
+[33m599093a[m HEAD@{27}: checkout: moving from main to Zyad
+[33m206a3f1[m HEAD@{28}: checkout: moving from Zyad to main
+[33m599093a[m HEAD@{29}: checkout: moving from main to Zyad
+[33m206a3f1[m HEAD@{30}: commit (merge): ت
+[33me6f0abe[m HEAD@{31}: commit: تحديث
+[33ma66031c[m HEAD@{32}: checkout: moving from Zyad to main
+[33m599093a[m HEAD@{33}: commit: تحديث
+[33m6804663[m HEAD@{34}: commit: تحديث
+[33me4cd0e2[m HEAD@{35}: commit: new 1 page and css style
+[33m60a8986[m HEAD@{36}: commit: new 1 page and css style
+[33m7764078[m HEAD@{37}: commit: new page zkat and more css and button tbr3
+[33m4d072ad[m HEAD@{38}: pull origin Zyad: Fast-forward
+[33mef65928[m HEAD@{39}: commit: new page zkat and more css and button tbr3
+[33m203ddca[m HEAD@{40}: commit: new page zkat and more css and button tbr3
+[33m46b6df7[m HEAD@{41}: commit: new pages
+[33mf335af0[m HEAD@{42}: commit: css
+[33ma66031c[m HEAD@{43}: checkout: moving from main to Zyad
+[33ma66031c[m HEAD@{44}: clone: from https://github.com/MohammedAli12345678/Badir.git
