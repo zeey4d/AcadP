@@ -15,7 +15,14 @@
                 <div class="auth-form">
                     <h2>تسجيل الدخول</h2>
                     <p>ادخل بياناتك للوصول إلى حسابك</p>
-                    
+                    <?php if (!empty($errors)): ?>
+                        <div class="error-messages">
+                            <?php foreach ($errors as $error): ?>
+                                <p style="color: red;"><?= htmlspecialchars($error) ?></p>
+                            <?php endforeach; ?>
+                        </div>
+                    <?php endif; ?>
+
                     <form action="/sessions_store" method="POST">
                         <div class="form-group">
                             <label for="email">البريد الإلكتروني</label>

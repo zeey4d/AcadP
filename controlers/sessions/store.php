@@ -29,7 +29,7 @@ if (! Validator::string($_POST['password'])) {
 }
 
 if (! empty($erorrs)) {
-    require 'views/sessions/create_view.php';
+    require 'views/users/index_view.php';
 }
 
 $user = $db->query("select * from users where email = :email ; ", [
@@ -55,11 +55,16 @@ $user = $db->query("SELECT * FROM users WHERE email = :email", [
 ])->fetch();
 
 if (!$user) {
-    die("User not found.");
+    $errors['sessions_store'] = "البريد الإلكتروني أو كلمة المرور غير صحيحة.";
+    require 'views/users/index_view.php';
+    exit();
 }
 
 if (!password_verify($_POST['password'], $user['password'])) {
-    die("Wrong password.");
+
+    $erorrs["Wrong password."];
+    require 'views/users/index_view.php';
+    exit();
 }
 
 
