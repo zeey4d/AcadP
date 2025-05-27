@@ -80,7 +80,11 @@ $router->post('/create', 'controlers/create.php');
 $router->get('/users_index','controlers/users/index.php');
 $router->get('/users_create','controlers/users/create.php')->only('guest');
 $router->post('/users_store','controlers/users/store.php');
-$router->get('/users_manage','controlers/users/manage.php')->only('guest');
+$router->get('/users_manage','controlers/users/manage.php');
+$router->get('/users_delete', 'controlers/users/user_delete.php');
+$router->get('/users_edit', 'controlers/users/user_edit.php');
+
+
 
 
 

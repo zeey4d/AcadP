@@ -40,6 +40,26 @@ FROM researches r;
 
 }
 
+$page = isset($_GET['page']) && is_numeric($_GET['page']) ? (int)$_GET['page'] : 1;
+$limit = 2;
+$offset = ($page - 1) * $limit;
+
+// $researches = $db->query(
+//     "SELECT r.research_id, r.title, r.abstract, r.thumbnail_url, r.publication_date
+//      FROM favorites f 
+//      JOIN researches r ON f.research_id = r.research_id
+//      WHERE f.user_id = :user_id
+//      LIMIT $limit OFFSET $offset",
+//     ['user_id' => $userId]
+// )->fetchAll();
+
+$total = $db->query(
+    "SELECT COUNT(*) as total FROM favorites WHERE user_id = :user_id",
+    ['user_id' => $userId]
+)->fetch()['total'];
+
+$totalPages = ceil($total / $limit);
+
 
 
 require "views/research_view.php";

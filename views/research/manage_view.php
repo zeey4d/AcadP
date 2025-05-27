@@ -5,8 +5,8 @@
 
     <style>
         :root {
-            --primary-color: #3498db;
-            --secondary-color: #2980b9;
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
             --text-color: #333;
             --light-text: #666;
             --background-color: #f5f7fa;
@@ -25,7 +25,6 @@
             background-color: var(--background-color);
             color: var(--text-color);
             line-height: 1.6;
-            padding: 20px;
         }
         
         .container {
@@ -202,7 +201,7 @@
                         </span>
                     </p>
                     <div class="card-actions">
-                        <a href="/research_view.php?id=<?= $research['research_id'] ?>" class="btn btn-view">عرض التفاصيل</a>
+                        <a href="/show?research_id=<?= htmlspecialchars($research['research_id']) ?>" class="btn btn-view">عرض التفاصيل</a>
                         <a href="/research_edit?id=<?= $research['research_id'] ?>" class="btn btn-edit">تعديل البحث</a>
                         <a href="/research_delete?id=<?= $research['research_id'] ?>" class="btn btn-delete" onclick="return confirm('هل أنت متأكد من رغبتك في حذف هذا البحث؟')">حذف البحث</a>
                     </div>

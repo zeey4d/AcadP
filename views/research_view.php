@@ -92,7 +92,18 @@
             <?php endforeach; ?>
                     </div>
     </div> 
-</section>
+
+    <?php if ($totalPages > 1): ?>
+    <div class="pagination">
+        <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+            <a href="?page=<?= $i ?>" <?= $i == $page ? 'style="font-weight:bold;"' : '' ?>>
+                <?= $i ?>
+            </a>
+        <?php endfor; ?>
+    </div>
+<?php endif; ?>
+
+<!-- </section>
 
 
             <div class="pagination">
@@ -103,7 +114,7 @@
                 <button class="page-btn"><i class="fas fa-arrow-left"></i> التالي</button>
             </div>
         </div>
-    </section>
+    </section> -->
     
 
     <script>
