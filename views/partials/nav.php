@@ -12,6 +12,8 @@
                     <!-- <li><a href="">المؤتمرات</a></li> -->
                     <li><a href="/about">عن المنصة</a></li>
                     <li><a href="/contact">اتصل بنا</a></li>
+                    <li> <a href="/cart" class="active">المفضلة</a></li>
+
                 </ul>
             </nav>
              <?php if ($_SESSION['user'] ?? false) : ?>
@@ -23,7 +25,6 @@
             <?php else : ?>
 
              <div class="auth-buttons">
-                <a href="/cart_view" class="active">المفضلة</a>
                 <a class="btn login"  href="/users_index">تسجيل الدخول</a>
                 <a class="btn register" href="/users_create">تسجيل جديد</a>
             </div>

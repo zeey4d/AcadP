@@ -2,169 +2,227 @@
   <?php require('views/partials/nav.php') ?>
   <?php require('views/partials/header.php') ?>
     <?php require('views/partials/adminBar.php') ?>
-    <!-- <section class="manage-research" style="margin-top: 100px;">
-        <div class="container">
-            <div class="page-header">
-                <h1><i class="fas fa-tasks"></i> إدارة الأبحاث</h1>
-                <nav class="breadcrumb">
-                    <a href="index.html">الرئيسية</a>
-                    <span>/</span>
-                    <a href="profile.html">حسابي</a>
-                    <span>/</span>
-                    <span>إدارة الأبحاث</span>
-                </nav>
-            </div>
 
-            <div class="research-actions">
-                <a href="/create" class="btn primary"><i class="fas fa-plus"></i> إضافة بحث جديد</a>
-                <div class="search-filter">
-                    <input type="text" id="searchResearch" placeholder="ابحث في أبحاثك...">
-                    <select id="filterStatus">
-                        <option value="">كل الحالات</option>
-                        <option value="published">منشور</option>
-                        <option value="under_review">قيد التحكيم</option>
-                        <option value="draft">مسودة</option>
-                        <option value="rejected">مرفوض</option>
-                    </select>
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2980b9;
+            --text-color: #333;
+            --light-text: #666;
+            --background-color: #f5f7fa;
+            --card-bg: #ffffff;
+            --border-color: #e0e0e0;
+            --success-color: #2ecc71;
+            --danger-color: #e74c3c;
+            --warning-color: #f39c12;
+        }
+        
+
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            direction: rtl;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        h1 {
+            text-align: center;
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--primary-color);
+            font-weight: 600;
+        }
+        
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card h3 {
+            margin: 0 0 15px;
+            color: var(--primary-color);
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+        
+        .card p {
+            margin: 8px 0;
+            color: var(--light-text);
+        }
+        
+        .card p strong {
+            color: var(--text-color);
+            font-weight: 600;
+        }
+        
+        .card-actions {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px dashed var(--border-color);
+            display: flex;
+            gap: 15px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+        
+        .btn-view {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .btn-edit {
+            background-color: var(--warning-color);
+            color: white;
+        }
+        
+        .btn-delete {
+            background-color: var(--danger-color);
+            color: white;
+        }
+        
+        .btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+        
+        .status {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .status-published {
+            background-color: rgba(46, 204, 113, 0.2);
+            color: var(--success-color);
+        }
+        
+        .status-unpublished {
+            background-color: rgba(231, 76, 60, 0.2);
+            color: var(--danger-color);
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+            gap: 5px;
+        }
+        
+        .pagination a {
+            padding: 8px 14px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .pagination a:hover,
+        .pagination a.active {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 40px;
+            color: var(--light-text);
+        }
+        
+        .empty-state i {
+            font-size: 3rem;
+            color: var(--border-color);
+            margin-bottom: 15px;
+        }
+        
+        @media (max-width: 768px) {
+            .card-actions {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+    <div class="container" style="margin-top: 150px;">
+        <h1>إدارة الأبحاث</h1>
+        
+        <?php if (empty($researches)): ?>
+            <div class="empty-state">
+                <i>📄</i>
+                <h3>لا توجد أبحاث متاحة</h3>
+                <p>لم يتم إضافة أي أبحاث بعد. يمكنك البدء بإضافة بحث جديد.</p>
+            </div>
+        <?php else: ?>
+            <?php foreach ($researches as $research): ?>
+                <div class="card">
+                    <h3><?= htmlspecialchars($research['title']) ?></h3>
+                    <p><strong>الملخص:</strong> <?= htmlspecialchars(mb_substr($research['abstract'], 0, 150)) ?>...</p>
+                    <p><strong>تاريخ النشر:</strong> <?= htmlspecialchars($research['publication_date']) ?></p>
+                    <p><strong>الحالة:</strong> 
+                        <span class="status status-<?= $research['is_published'] ? 'published' : 'unpublished' ?>">
+                            <?= $research['is_published'] ? 'منشور' : 'غير منشور' ?>
+                        </span>
+                    </p>
+                    <div class="card-actions">
+                        <a href="/create" class="btn primary" style="background-color: #007bff; color: white; padding: 8px 15px; border-radius: 5px; text-decoration: none;">
+        <i class="fas fa-plus"></i> إضافة بحث جديد
+      </a>
+                        <a href="/research_view.php?id=<?= $research['research_id'] ?>" class="btn btn-view">عرض التفاصيل</a>
+                        <a href="/research_edit?id=<?= $research['research_id'] ?>" class="btn btn-edit">تعديل البحث</a>
+                        <a href="/research_delete?id=<?= $research['research_id'] ?>" class="btn btn-delete" onclick="return confirm('هل أنت متأكد من رغبتك في حذف هذا البحث؟')">حذف البحث</a>
+                    </div>
                 </div>
-            </div>
-
-            <div class="research-table-container">
-                <table id="researchTable" class="display">
-                    <thead>
-                        <tr>
-                            <th>عنوان البحث</th>
-                            <th>المجلة</th>
-                            <th>الحالة</th>
-                            <th>تاريخ الإضافة</th>
-                            <th>المشاهدات</th>
-                            <th>التحميلات</th>
-                            <th>الإجراءات</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <a href="research-details.html">تطوير خوارزميات التعلم العميق لتحليل الصور الطبية</a>
-                            </td>
-                            <td>المجلة الدولية للذكاء الاصطناعي في الطب</td>
-                            <td><span class="status-badge published">منشور</span></td>
-                            <td>15/05/2023</td>
-                            <td>1,245</td>
-                            <td>328</td>
-                            <td>
-                                <div class="action-buttons">
-                                    <button class="btn-icon edit" title="تعديل"><i class="fas fa-edit"></i></button>
-                                    <button class="btn-icon stats" title="الإحصائيات"><i class="fas fa-chart-bar"></i></button>
-                                    <button class="btn-icon delete" title="حذف"><i class="fas fa-trash-alt"></i></button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a href="research-details.html">تأثير النظام الغذائي على مقاومة الإنسولين</a>
-                            </td>
-                            <td>مجلة الدراسات الطبية المتقدمة</td>
-                            <td><span class="status-badge under-review">قيد التحكيم</span></td>
-                            <td>10/05/2023</td>
-                            <td>890</td>
-                            <td>210</td>
-                            <td>
-                                <div class="action-buttons">
-                                    <button class="btn-icon edit" title="تعديل"><i class="fas fa-edit"></i></button>
-                                    <button class="btn-icon stats" title="الإحصائيات"><i class="fas fa-chart-bar"></i></button>
-                                    <button class="btn-icon delete" title="حذف"><i class="fas fa-trash-alt"></i></button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a href="research-details.html">تصميم مواد نانوية لتحلية المياه بكفاءة عالية</a>
-                            </td>
-                            <td>المجلة العربية للهندسة والعلوم التطبيقية</td>
-                            <td><span class="status-badge published">منشور</span></td>
-                            <td>05/05/2023</td>
-                            <td>1,532</td>
-                            <td>412</td>
-                            <td>
-                                <div class="action-buttons">
-                                    <button class="btn-icon edit" title="تعديل"><i class="fas fa-edit"></i></button>
-                                    <button class="btn-icon stats" title="الإحصائيات"><i class="fas fa-chart-bar"></i></button>
-                                    <button class="btn-icon delete" title="حذف"><i class="fas fa-trash-alt"></i></button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a href="research-details.html">تحسين أداء خوارزميات تعلم الآلة باستخدام تقنيات التعلم التعزيزي</a>
-                            </td>
-                            <td>مجلة علوم الحاسوب والتقنيات الحديثة</td>
-                            <td><span class="status-badge rejected">مرفوض</span></td>
-                            <td>20/04/2023</td>
-                            <td>210</td>
-                            <td>58</td>
-                            <td>
-                                <div class="action-buttons">
-                                    <button class="btn-icon edit" title="تعديل"><i class="fas fa-edit"></i></button>
-                                    <button class="btn-icon stats" title="الإحصائيات"><i class="fas fa-chart-bar"></i></button>
-                                    <button class="btn-icon delete" title="حذف"><i class="fas fa-trash-alt"></i></button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a href="research-details.html">تأثير التغيرات المناخية على انتشار الأمراض المعدية</a>
-                            </td>
-                            <td>-</td>
-                            <td><span class="status-badge draft">مسودة</span></td>
-                            <td>10/04/2023</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>
-                                <div class="action-buttons">
-                                    <button class="btn-icon edit" title="تعديل"><i class="fas fa-edit"></i></button>
-                                    <button class="btn-icon stats" title="الإحصائيات"><i class="fas fa-chart-bar"></i></button>
-                                    <button class="btn-icon delete" title="حذف"><i class="fas fa-trash-alt"></i></button>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-             نموذج حذف البحث (مخفى بشكل افتراضي) 
-            <div id="deleteModal" class="modal">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h3>تأكيد الحذف</h3>
-                        <button class="close-modal">&times;</button>
-                    </div>
-                    <div class="modal-body">
-                        <p>هل أنت متأكد أنك تريد حذف هذا البحث؟ هذا الإجراء لا يمكن التراجع عنه.</p>
-                        <p><strong>عنوان البحث:</strong> <span id="researchToDelete"></span></p>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn cancel-btn">إلغاء</button>
-                        <button class="btn danger-btn">حذف البحث</button>
-                    </div>
+            <?php endforeach; ?>
+            
+            <?php if ($totalPages > 1): ?>
+                <div class="pagination">
+                    <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+                        <a href="?page=<?= $i ?>" class="<?= $i == $page ? 'active' : '' ?>"><?= $i ?></a>
+                    <?php endfor; ?>
                 </div>
-            </div>
-        </div>
-    </section> -->
-
-    
-<section class="manage-research" style="margin-top: 100px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
-  <div class="container">
-    <div class="page-header" style="margin-bottom: 30px;">
-      <h1 style="font-size: 28px; color: #333;"><i class="fas fa-tasks"></i> إدارة الأبحاث</h1>
-      <nav class="breadcrumb" style="color: #888; font-size: 14px;">
-        <a href="index.html">الرئيسية</a> <span>/</span>
-        <a href="profile.html">حسابي</a> <span>/</span>
-        <span>إدارة الأبحاث</span>
-      </nav>
+            <?php endif; ?>
+        <?php endif; ?>
     </div>
 
-    <div class="research-actions" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+    <!-- <div class="research-actions" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
       <a href="/create" class="btn primary" style="background-color: #007bff; color: white; padding: 8px 15px; border-radius: 5px; text-decoration: none;">
         <i class="fas fa-plus"></i> إضافة بحث جديد
       </a>
@@ -207,10 +265,10 @@
           <!-- البيانات كما هي... (بإمكانك تحسين كل <tr> إن رغبت) -->
 
 
-          
+<!--           
         </tbody>
       </table>
-    </div>
+    </div> --> -->
 
     <!-- نموذج حذف البحث -->
     <div id="deleteModal" class="modal" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); justify-content: center; align-items: center;">

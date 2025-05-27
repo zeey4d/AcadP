@@ -43,6 +43,8 @@ function logIn($user)
 {
 
     $_SESSION['user'] =  [
+        'id' => $user['user_id'],         // ✅ هذا أهم شيء
+        'username' => $user['username'],
         'email' => $user['email']
     ];
     session_regenerate_id(true);
