@@ -1,5 +1,7 @@
-<?php require('views/partials/head.php') ?>
-<?php require('views/partials/nav.php') ?>
+   <?php require('views/partials/head.php') ?>
+  <?php require('views/partials/nav.php') ?>
+  <?php require('views/partials/header.php') ?>
+    <?php require('views/partials/adminBar.php') ?>
 
 <h2>قائمة المستخدمين</h2>
 <a href="/users/create">إضافة مستخدم جديد</a>
@@ -18,4 +20,6 @@
 </tr>
 <?php endforeach; ?>
 </table>
+
+
 <?php require('views/partials/footer.php') ?> 

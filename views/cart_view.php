@@ -78,7 +78,13 @@
                         </div>
                         <div class="research-actions">
                             <a href="research-details.html" class="btn read-more">قراءة البحث</a>
-                            <button class="btn-icon remove-favorite" title="إزالة من المفضلة"><i class="fas fa-trash-alt"></i></button>
+                            <!-- <button class="btn-icon remove-favorite" title="إزالة من المفضلة"><i class="fas fa-trash-alt"></i></button> -->
+                                     <!-- زر حذف باستخدام JavaScript -->
+                                         <form method="POST" action="/removefav" style="margin-top:10px;">
+            <input type="hidden" name="research_id" value="<?= $researche['research_id'] ?>">
+            <button type="submit">🗑️ إزالة من المفضلة</button>
+        </form>
+        <!-- <button onclick="removeFromFavorites(<?//= $researche['research_id'] ?>)">🗑️ إزالة من المفضلة</button> -->
                             <button class="btn-icon share-research" title="مشاركة"><i class="fas fa-share-alt"></i></button>
                         </div>
                     </div>
@@ -106,45 +112,70 @@
     </section>
 
     <script>
+
+        function removeFromFavorites(researchId) {
+    if (!confirm("هل أنت متأكد من حذف هذا البحث من المفضلة؟")) return;
+
+    fetch('/removefav.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: 'research_id=' + encodeURIComponent(researchId)
+    })
+    .then(response => response.text())
+    .then(data => {
+        if (data.trim() === 'success') {
+            // حذف الكارد من الصفحة
+            const card = document.getElementById('card-' + researchId);
+            if (card) card.remove();
+        } else {
+            alert("فشل في الحذف: " + data);
+        }
+    })
+    .catch(error => {
+        console.error('خطأ في الحذف:', error);
+    });
+}
         // تفعيل القائمة المنسدلة للمستخدم
-        const userAvatar = document.querySelector('.user-avatar');
-        const dropdownMenu = document.querySelector('.dropdown-menu');
+        // const userAvatar = document.querySelector('.user-avatar');
+        // const dropdownMenu = document.querySelector('.dropdown-menu');
 
-        userAvatar.addEventListener('click', () => {
-            dropdownMenu.classList.toggle('show');
-        });
+        // userAvatar.addEventListener('click', () => {
+        //     dropdownMenu.classList.toggle('show');
+        // });
 
-        // إغلاق القائمة عند النقر خارجها
-        document.addEventListener('click', (e) => {
-            if (!userAvatar.contains(e.target)) {
-                dropdownMenu.classList.remove('show');
-            }
-        });
+        // // إغلاق القائمة عند النقر خارجها
+        // document.addEventListener('click', (e) => {
+        //     if (!userAvatar.contains(e.target)) {
+        //         dropdownMenu.classList.remove('show');
+        //     }
+        // });
 
-        // فلترة الأبحاث حسب التصنيف
-        const filterTags = document.querySelectorAll('.filter-tag');
+        // // فلترة الأبحاث حسب التصنيف
+        // const filterTags = document.querySelectorAll('.filter-tag');
         
-        filterTags.forEach(tag => {
-            tag.addEventListener('click', () => {
-                filterTags.forEach(t => t.classList.remove('active'));
-                tag.classList.add('active');
-                // هنا يمكن إضافة كود الفلترة الفعلي
-            });
-        });
+        // filterTags.forEach(tag => {
+        //     tag.addEventListener('click', () => {
+        //         filterTags.forEach(t => t.classList.remove('active'));
+        //         tag.classList.add('active');
+        //         // هنا يمكن إضافة كود الفلترة الفعلي
+        //     });
+        // });
 
-        // إزالة بحث من المفضلة
-        const removeButtons = document.querySelectorAll('.remove-favorite');
+        // // إزالة بحث من المفضلة
+        // const removeButtons = document.querySelectorAll('.remove-favorite');
         
-        removeButtons.forEach(btn => {
-            btn.addEventListener('click', function() {
-                const researchCard = this.closest('.research-card');
-                researchCard.classList.add('removing');
-                setTimeout(() => {
-                    researchCard.remove();
-                    // يمكن هنا إضافة كود لإزالة البحث من المفضلة في قاعدة البيانات
-                }, 300);
-            });
-        });
+        // removeButtons.forEach(btn => {
+        //     btn.addEventListener('click', function() {
+        //         const researchCard = this.closest('.research-card');
+        //         researchCard.classList.add('removing');
+        //         setTimeout(() => {
+        //             researchCard.remove();
+        //             // يمكن هنا إضافة كود لإزالة البحث من المفضلة في قاعدة البيانات
+        //         }, 300);
+        //     });
+        // });
     </script>
 
 <?php require('views/partials/footer.php') ?> 
