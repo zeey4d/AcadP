@@ -12,7 +12,7 @@
                     <!-- <li><a href="">المؤتمرات</a></li> -->
                     <li><a href="/about">عن المنصة</a></li>
                     <li><a href="/contact">اتصل بنا</a></li>
-                    <li> <a href="/cart_view" class="active">المفضلة</a></li>
+                    <li> <a href="/cart" class="active">المفضلة</a></li>
 
                 </ul>
             </nav>

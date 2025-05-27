@@ -13,5 +13,7 @@ catch(PDOException $ex){
     error_log($ex->getMessage());
 }
 
+
+
 require 'views/users/manage_view.php';
 

@@ -85,7 +85,9 @@
         </div>
         <div class="research-grid">
             
-             <?php foreach ($researches as $researche): ?>
+             <?php // foreach ($researches as $researche): ?>
+                <?php foreach (array_slice($researches, 0, 8) as $researche): ?>
+
             <div class="research-card">
                  <a href="/show?research_id=<?= htmlspecialchars($researche['research_id']) ?>">
                 <div class="research-badge">

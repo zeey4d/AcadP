@@ -1,6 +1,6 @@
 <div class="admin-bar">
   <div class="container">
-    <a href="/admin/users">المستخدمون</a>
+    <a href="/users_manage">المستخدمون</a>
     <a href="/manage">الأبحاث</a>
     <!-- <form action="/research_create" method="get"><input type="hidden" name="" value=""><button type="submit"  aria-label="الاوقاف">بحث</button></form> -->
 

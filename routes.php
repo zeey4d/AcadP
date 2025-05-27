@@ -20,7 +20,6 @@ $router->get('/contact', 'views/contact_view.php');
 
 // research page
 $router->get('/manage_view', 'views/research/manage_view.php');
-$router->get('/research', 'views/research_view.php');
 $router->get('/create_view', 'views/research/create_view.php');
 $router->get('/research_view', 'views/research_view.php');
 
@@ -50,6 +49,13 @@ $router->get('/manage', 'controlers/research/manage.php');
 $router->get('/show', 'controlers/research/show.php');
 $router->get('/cart', 'controlers/cart.php')->only('registered');
 $router->post('/research_addff', 'controlers/research/add.php')->only('registered');
+
+$router->post('/removefav', 'controlers/research/removefav.php')->only('registered');
+$router->get('/research_delete', 'controlers/research/research_delete.php');
+$router->get('/research_edit', 'controlers/research/research_edit.php');
+
+
+
 
 
 
