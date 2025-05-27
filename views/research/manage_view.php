@@ -168,6 +168,7 @@
       <a href="/create" class="btn primary" style="background-color: #007bff; color: white; padding: 8px 15px; border-radius: 5px; text-decoration: none;">
         <i class="fas fa-plus"></i> إضافة بحث جديد
       </a>
+        
     <a href="#" class="btn" style="background-color: #28a745; color: white; padding: 8px 15px; border-radius: 5px; text-decoration: none;">
       <i class="fas fa-eye"></i> عرض البحث
     </a>
@@ -205,61 +206,8 @@
         <tbody>
           <!-- البيانات كما هي... (بإمكانك تحسين كل <tr> إن رغبت) -->
 
-          <?php
-// جلب الأبحاث من قاعدة البيانات
-$stmt = $pdo->query("SELECT * FROM researches ORDER BY created_at DESC");
-$researches = $stmt->fetchAll(PDO::FETCH_ASSOC);
-?>
 
-<?php foreach ($researches as $research): ?>
-  <tr>
-    <td><input type="checkbox" class="select-research"></td>
-
-    <!-- صورة مصغرة -->
-    <td>
-      <img src="views/media/images/<?= htmlspecialchars($research['thumbnail_url'] ?? 'default.png') ?>" 
-           alt="صورة البحث" class="research-thumbnail" loading="lazy" width="80">
-    </td>
-
-    <!-- عنوان البحث مع خيارات -->
-    <td>
-      <?= htmlspecialchars($research['title']) ?>
-      <nav class="options">
-        <ul>
-          <li>
-            <form action="/researches_show" method="get">
-              <input type="hidden" name="research_id" value="<?= htmlspecialchars($research['research_id']) ?>">
-              <button type="submit" aria-label="عرض">عرض</button>
-            </form>
-          </li>
-          <li>
-            <form action="/researches_edit" method="get">
-              <input type="hidden" name="research_id" value="<?= htmlspecialchars($research['research_id']) ?>">
-              <button type="submit" aria-label="تعديل">تعديل</button>
-            </form>
-          </li>
-          <li>
-            <form action="/researches_destroy" method="post">
-              <input type="hidden" name="_method" value="DELETE">
-              <input type="hidden" name="research_id" value="<?= htmlspecialchars($research['research_id']) ?>">
-              <button type="submit" aria-label="حذف">حذف</button>
-            </form>
-          </li>
-        </ul>
-      </nav>
-    </td>
-
-    <!-- ملخص البحث -->
-    <td><?= htmlspecialchars(mb_strimwidth($research['abstract'], 0, 100, '...')) ?></td>
-
-    <!-- تاريخ النشر -->
-    <td><?= htmlspecialchars($research['publication_date']) ?></td>
-
-    <!-- عدد الصفحات -->
-    <td><?= htmlspecialchars($research['page_count']) ?></td>
-  </tr>
-<?php endforeach; ?>
-
+          
         </tbody>
       </table>
     </div>
