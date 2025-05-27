@@ -40,18 +40,12 @@ FROM researches r;
 
 }
 
+// الشريط الذي في الاسفل
+
 $page = isset($_GET['page']) && is_numeric($_GET['page']) ? (int)$_GET['page'] : 1;
 $limit = 2;
 $offset = ($page - 1) * $limit;
 
-// $researches = $db->query(
-//     "SELECT r.research_id, r.title, r.abstract, r.thumbnail_url, r.publication_date
-//      FROM favorites f 
-//      JOIN researches r ON f.research_id = r.research_id
-//      WHERE f.user_id = :user_id
-//      LIMIT $limit OFFSET $offset",
-//     ['user_id' => $userId]
-// )->fetchAll();
 
 $total = $db->query(
     "SELECT COUNT(*) as total FROM favorites WHERE user_id = :user_id",
@@ -59,6 +53,62 @@ $total = $db->query(
 )->fetch()['total'];
 
 $totalPages = ceil($total / $limit);
+
+//  فلتره
+
+
+
+// استلام مدخلات الفلترة من المستخدم (POST أو GET)
+$filters = [
+    'category_id' => $_GET['category_id'] ?? null,
+    'is_published' => $_GET['is_published'] ?? null,
+    'title' => $_GET['title'] ?? null,
+    'date_from' => $_GET['date_from'] ?? null,
+    'date_to' => $_GET['date_to'] ?? null,
+];
+
+// بناء الاستعلام بشكل ديناميكي
+$query = "SELECT researches.*, categories.name AS category_name
+          FROM researches
+          LEFT JOIN categories ON researches.category_id = categories.category_id
+          WHERE 1=1";
+
+$params = [];
+
+if (!empty($filters['category_id'])) {
+    $query .= " AND researches.category_id = :category_id";
+    $params[':category_id'] = $filters['category_id'];
+}
+
+if (!is_null($filters['is_published'])) {
+    $query .= " AND researches.is_published = :is_published";
+    $params[':is_published'] = $filters['is_published'];
+}
+
+if (!empty($filters['title'])) {
+    $query .= " AND researches.title LIKE :title";
+    $params[':title'] = '%' . $filters['title'] . '%';
+}
+
+if (!empty($filters['date_from'])) {
+    $query .= " AND researches.publication_date >= :date_from";
+    $params[':date_from'] = $filters['date_from'];
+}
+
+if (!empty($filters['date_to'])) {
+    $query .= " AND researches.publication_date <= :date_to";
+    $params[':date_to'] = $filters['date_to'];
+}
+
+$query .= " ORDER BY researches.publication_date DESC";
+
+$researches = $db->query($query, $params)->fetchAll();
+
+// جلب التصنيفات من قاعدة البيانات
+$categories = $db->query("SELECT * FROM categories")->fetchAll();
+
+
+
 
 
 

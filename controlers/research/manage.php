@@ -3,12 +3,13 @@ use core\App;
 use core\Database;
 
 
+$db = App::resolve(Database::class);
+
 // تأكد من أن المستخدم مسجل الدخول (اختياري)
 if (!isset($_SESSION['user'])) {
     die("يجب تسجيل الدخول أولاً.");
 }
 
-$db = App::resolve(Database::class);
 
 // التصفح
 $page = isset($_GET['page']) && is_numeric($_GET['page']) ? (int)$_GET['page'] : 1;

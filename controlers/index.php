@@ -44,6 +44,11 @@ FROM researches r;
 }
 
 
+// if (!file_exists($requested_page)) {
+//     header("HTTP/1.0 404 Not Found");
+//     include '404.php';
+//     exit();
+// }
 
 
 require "views/index_view.php";

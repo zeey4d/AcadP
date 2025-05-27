@@ -47,7 +47,7 @@
                         <i class="fas fa-bookmark"></i>
                     </div>
                     <div class="research-thumbnail">
-                        <img src="https://via.placeholder.com/300x200" alt="صورة البحث">
+                    <img src="views/media/images/<?= htmlspecialchars($researche['thumbnail_url'] ?? "mg.png") ?>"  alt="صورة البحث">
                         <div class="research-overlay">
                         <a href="research-details.html"><?= htmlspecialchars($researche['title']) ?></a>
                         </div>
@@ -77,7 +77,7 @@
                             <span><i class="fas fa-language"></i> EN</span>
                         </div>
                         <div class="research-actions">
-                            <a href="research-details.html" class="btn read-more">قراءة البحث</a>
+                        <a href="/show?research_id=<?= htmlspecialchars($researche['research_id']) ?>" class="btn read-more">قراءة البحث</a>
                             <!-- <button class="btn-icon remove-favorite" title="إزالة من المفضلة"><i class="fas fa-trash-alt"></i></button> -->
                                      <!-- زر حذف باستخدام JavaScript -->
                                          <form method="POST" action="/removefav" style="margin-top:10px;">

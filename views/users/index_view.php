@@ -42,7 +42,7 @@
                             <label for="remember">تذكرني</label>
                         </div>
                         
-                        <button class="btn_log_in" id="btn_log_in" aria-label="تسجيل دخول" >تسجيل دخول</button>
+                        <button class="btn_log_in btn login " style="background-color: black; color:white;" id="btn_log_in" aria-label="تسجيل دخول" >تسجيل دخول</button>
 
                         <!-- <a  href="/users_index" type="submit" class="btn primary">تسجيل الدخول</a> -->
                         

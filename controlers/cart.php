@@ -11,6 +11,8 @@ use core\Database;
 
 $db = App::resolve(Database::class);
 
+
+
 $userId = filter_var($_SESSION['user']['id'], FILTER_SANITIZE_NUMBER_INT);
 
 $researches = $db->query(

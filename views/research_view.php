@@ -8,7 +8,7 @@
         <div class="container">
             <div class="section-header">
                 <h1 class="section-title"><i class="fas fa-bookmark"></i> الأبحاث </h1>
-                <div class="actions">
+                <!-- <div class="actions">
                     <div class="search-box">
                         <input type="text" placeholder="ابحث في المفضلة...">
                         <button><i class="fas fa-search"></i></button>
@@ -21,10 +21,10 @@
                             <option value="rating">ترتيب حسب التقييم</option>
                         </select>
                     </div>
-                </div>
+                </div> -->
             </div>
 
-            <div class="filters">
+            <!-- <div class="filters">
                 <div class="filter-tags">
                     <span class="filter-tag active">الكل <span class="count">(12)</span></span>
                     <span class="filter-tag">علوم الحاسب <span class="count">(5)</span></span>
@@ -33,7 +33,60 @@
                     <span class="filter-tag">العلوم الإنسانية <span class="count">(2)</span></span>
                 </div>
                 <button class="btn filter-btn"><i class="fas fa-sliders-h"></i> المزيد من الفلاتر</button>
-            </div>
+            </div> -->
+
+            <form method="GET" action="/research" class="filter-form" style="margin-bottom: 20px;">
+    <div style="display: flex; flex-wrap: wrap; gap: 15px; align-items: flex-end;">
+        
+        <!-- التصنيف -->
+        <div>
+            <label for="category_id">التصنيف:</label><br>
+            <select name="category_id" id="category_id">
+                <option value="">-- الكل --</option>
+                <?php foreach ($categories as $category): ?>
+                    <option value="<?= $category['category_id'] ?>" 
+                        <?= isset($_GET['category_id']) && $_GET['category_id'] == $category['category_id'] ? 'selected' : '' ?>>
+                        <?= htmlspecialchars($category['name']) ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+
+        <!-- عنوان البحث -->
+        <div>
+            <label for="title">عنوان البحث:</label><br>
+            <input type="text" name="title" id="title" value="<?= htmlspecialchars($_GET['title'] ?? '') ?>">
+        </div>
+
+        <!-- حالة النشر -->
+        <div>
+            <label for="is_published">حالة النشر:</label><br>
+            <select name="is_published" id="is_published">
+                <option value="">-- الكل --</option>
+                <option value="1" <?= isset($_GET['is_published']) && $_GET['is_published'] === '1' ? 'selected' : '' ?>>منشور</option>
+                <option value="0" <?= isset($_GET['is_published']) && $_GET['is_published'] === '0' ? 'selected' : '' ?>>غير منشور</option>
+            </select>
+        </div>
+
+        <!-- من تاريخ -->
+        <div>
+            <label for="date_from">من تاريخ:</label><br>
+            <input type="date" name="date_from" id="date_from" value="<?= htmlspecialchars($_GET['date_from'] ?? '') ?>">
+        </div>
+
+        <!-- إلى تاريخ -->
+        <div>
+            <label for="date_to">إلى تاريخ:</label><br>
+            <input type="date" name="date_to" id="date_to" value="<?= htmlspecialchars($_GET['date_to'] ?? '') ?>">
+        </div>
+
+        <!-- زر التصفية -->
+        <div>
+            <button type="submit">تصفية</button>
+            <a href="/research" style="margin-left: 10px;">إعادة تعيين</a>
+        </div>
+    </div>
+</form>
 
     <section class="latest-research">
     <div class="container">
@@ -47,7 +100,7 @@
             <div class="research-card">
                  <a href="/show?research_id=<?= htmlspecialchars($researche['research_id']) ?>">
                 <div class="research-badge">
-                    <span class="research-category">علوم الحاسب</span>
+                    <span class="research-category"><?= htmlspecialchars($researche['category_name']) ?> </span>
                     <span class="research-status new">جديد</span>
                 </div>
                 <div class="research-thumbnail">
@@ -92,6 +145,8 @@
             <?php endforeach; ?>
                     </div>
     </div> 
+     </section> 
+
 
     <?php if ($totalPages > 1): ?>
     <div class="pagination">
@@ -103,8 +158,7 @@
     </div>
 <?php endif; ?>
 
-<!-- </section>
-
+<!--
 
             <div class="pagination">
                 <button class="page-btn disabled"><i class="fas fa-arrow-right"></i> السابق</button>
