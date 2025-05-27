@@ -202,6 +202,10 @@
                     </p>
                     <div class="card-actions">
                         <a href="/show?research_id=<?= htmlspecialchars($research['research_id']) ?>" class="btn btn-view">عرض التفاصيل</a>
+                        <!-- <a href="/create" class="btn primary" style="background-color: #007bff; color: white; padding: 8px 15px; border-radius: 5px; text-decoration: none;">
+        <i class="fas fa-plus"></i> إضافة بحث جديد
+      </a>
+                        <a href="/research_view.php?id=<//?= $research['research_id'] ?>" class="btn btn-view">عرض التفاصيل</a> -->
                         <a href="/research_edit?id=<?= $research['research_id'] ?>" class="btn btn-edit">تعديل البحث</a>
                         <a href="/research_delete?id=<?= $research['research_id'] ?>" class="btn btn-delete" onclick="return confirm('هل أنت متأكد من رغبتك في حذف هذا البحث؟')">حذف البحث</a>
                     </div>
@@ -217,5 +221,150 @@
             <?php endif; ?>
         <?php endif; ?>
     </div>
+
+    <!-- <div class="research-actions" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+      <a href="/create" class="btn primary" style="background-color: #007bff; color: white; padding: 8px 15px; border-radius: 5px; text-decoration: none;">
+        <i class="fas fa-plus"></i> إضافة بحث جديد
+      </a>
+        
+    <a href="#" class="btn" style="background-color: #28a745; color: white; padding: 8px 15px; border-radius: 5px; text-decoration: none;">
+      <i class="fas fa-eye"></i> عرض البحث
+    </a>
+    <a href="#" class="btn" style="background-color: #ffc107; color: white; padding: 8px 15px; border-radius: 5px; text-decoration: none;">
+      <i class="fas fa-edit"></i> تعديل البحث
+    </a>
+    <a href="#" class="btn" id="openDeleteModalBtn" style="background-color: #dc3545; color: white; padding: 8px 15px; border-radius: 5px; text-decoration: none;">
+      <i class="fas fa-trash-alt"></i> حذف البحث
+    </a>
+      <div class="search-filter" style="display: flex; gap: 10px;">
+        <input type="text" id="searchResearch" placeholder="ابحث في أبحاثك..." style="padding: 6px 10px; border: 1px solid #ccc; border-radius: 4px;">
+        <select id="filterStatus" style="padding: 6px 10px; border: 1px solid #ccc; border-radius: 4px;">
+          <option value="">كل الحالات</option>
+          <option value="published">منشور</option>
+          <option value="under_review">قيد التحكيم</option>
+          <option value="draft">مسودة</option>
+          <option value="rejected">مرفوض</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="research-table-container" style="overflow-x: auto;">
+      <table id="researchTable" class="display" style="width: 100%; border-collapse: collapse;">
+        <thead>
+          <tr style="background-color: #f1f1f1;">
+            <th>عنوان البحث</th>
+            <th>المجلة</th>
+            <th>الحالة</th>
+            <th>تاريخ الإضافة</th>
+            <th>المشاهدات</th>
+            <th>التحميلات</th>
+            <th>الإجراءات</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- البيانات كما هي... (بإمكانك تحسين كل <tr> إن رغبت) -->
+
+
+<!--           
+        </tbody>
+      </table>
+    </div> --> -->
+
+    <!-- نموذج حذف البحث -->
+    <div id="deleteModal" class="modal" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); justify-content: center; align-items: center;">
+      <div class="modal-content" style="background: white; padding: 20px; border-radius: 8px; width: 90%; max-width: 500px;">
+        <div class="modal-header" style="display: flex; justify-content: space-between; align-items: center;">
+          <h3 style="margin: 0;">تأكيد الحذف</h3>
+          <button class="close-modal" style="background: transparent; border: none; font-size: 20px;">&times;</button>
+        </div>
+        <div class="modal-body" style="margin-top: 15px;">
+          <p>هل أنت متأكد أنك تريد حذف هذا البحث؟ هذا الإجراء لا يمكن التراجع عنه.</p>
+          <p><strong>عنوان البحث:</strong> <span id="researchToDelete" style="color: red;"></span></p>
+        </div>
+        <div class="modal-footer" style="margin-top: 20px; display: flex; justify-content: flex-end; gap: 10px;">
+          <button class="btn cancel-btn" style="padding: 6px 12px; background: #ccc; border: none; border-radius: 4px;">إلغاء</button>
+          <button class="btn danger-btn" style="padding: 6px 12px; background: #dc3545; color: white; border: none; border-radius: 4px;">حذف البحث</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script>
+        // تفعيل القائمة المنسدلة للمستخدم
+        const userAvatar = document.querySelector('.user-avatar');
+        const dropdownMenu = document.querySelector('.dropdown-menu');
+
+        userAvatar.addEventListener('click', () => {
+            dropdownMenu.classList.toggle('show');
+        });
+
+        // إغلاق القائمة عند النقر خارجها
+        document.addEventListener('click', (e) => {
+            if (!userAvatar.contains(e.target)) {
+                dropdownMenu.classList.remove('show');
+            }
+        });
+
+        // تفعيل جدول الأبحاث
+        $(document).ready(function() {
+            $('#researchTable').DataTable({
+                language: {
+                    url: '//cdn.datatables.net/plug-ins/1.11.5/i18n/ar.json'
+                },
+                responsive: true,
+                order: [[3, 'desc']]
+            });
+
+            // البحث والتصفية
+            $('#searchResearch').on('keyup', function() {
+                $('#researchTable').DataTable().search(this.value).draw();
+            });
+
+            $('#filterStatus').on('change', function() {
+                $('#researchTable').DataTable().column(2).search(this.value).draw();
+            });
+        });
+
+        // إدارة النموذج المنبثق للحذف
+        const deleteButtons = document.querySelectorAll('.btn-icon.delete');
+        const deleteModal = document.getElementById('deleteModal');
+        const closeModal = document.querySelector('.close-modal');
+        const cancelBtn = document.querySelector('.cancel-btn');
+        const researchToDelete = document.getElementById('researchToDelete');
+
+        deleteButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const researchTitle = this.closest('tr').querySelector('td a').textContent;
+                researchToDelete.textContent = researchTitle;
+                deleteModal.style.display = 'block';
+            });
+        });
+
+        closeModal.addEventListener('click', () => {
+            deleteModal.style.display = 'none';
+        });
+
+        cancelBtn.addEventListener('click', () => {
+            deleteModal.style.display = 'none';
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === deleteModal) {
+                deleteModal.style.display = 'none';
+            }
+        });
+
+        // هنا يمكنك إضافة كود الحذف الفعلي عند النقر على زر الحذف
+        document.querySelector('.danger-btn').addEventListener('click', function() {
+            alert('تم حذف البحث بنجاح');
+            deleteModal.style.display = 'none';
+            // هنا يمكنك إضافة كود AJAX لحذف البحث من قاعدة البيانات
+        });
+    </script>
 
 <?php require('views/partials/footer.php') ?> 
