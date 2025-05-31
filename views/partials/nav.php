@@ -39,6 +39,15 @@
 
 if(isset($_POST["logout"])){
     session_destroy();
-header("Location: " . $_SERVER["HTTP_REFERER"]);
+    header("Location: " . $_SERVER["HTTP_REFERER"]);
+
+    // حذف كوكي التذكر إن وجد
+    if (isset($_COOKIE['remember_me'])) {
+        setcookie('remember_me', '', time() - 3600, '/');
+        unset($_COOKIE['remember_me']);
+        
+        // يمكنك هنا أيضاً حذف الرمز (token) من قاعدة البيانات
+        // deleteTokenFromDatabase($_SESSION['user']['id']);
+    }
 }
 ?>

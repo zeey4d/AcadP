@@ -15,7 +15,7 @@ $router->get('/show_view', 'views/research/show_view.php');
 //home page
 $router->get('/cart_view', 'views/cart_view.php');
 $router->get('/about', 'views/about_view.php');
-$router->get('/contact', 'views/contact_view.php');
+$router->get('/contact_view', 'views/contact_view.php');
 
 
 // research page

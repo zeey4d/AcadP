@@ -39,7 +39,7 @@ function authorize($condition, $status = Response::HTTP_FORBIDDEN)
 
 
 
-function logIn($user)
+function logIn($user,$remember = false)
 {
 
     $_SESSION['user'] =  [
@@ -51,6 +51,30 @@ function logIn($user)
     ];
 
     session_regenerate_id(true);
+
+        // إذا طلب المستخدم تذكر بيانات الدخول
+    if ($remember) {
+        // إنشاء كوكي لتذكر المستخدم
+        $cookie_value = [
+            'user_id' => $user['user_id'],
+            'token' => bin2hex(random_bytes(16)) // توليد رمز عشوائي آمن
+        ];
+        
+        // تخزين الكوكي لمدة 30 يوم (يمكنك تعديل المدة)
+        setcookie(
+            'remember_me',
+            json_encode($cookie_value),
+            time() + (86400 * 30), // 30 يوم
+            '/',
+            '', // اتركه فارغاً ليعمل على النطاق الحالي
+            true, // Secure - HTTPS فقط
+            true  // HttpOnly - لا يمكن الوصول عبر JavaScript
+        );
+        
+        // هنا يمكنك تخزين الرمز (token) في قاعدة البيانات
+        // للتحقق منه لاحقاً
+        // saveRememberToken($user['user_id'], $cookie_value['token']);
+    }
 }
 
 
