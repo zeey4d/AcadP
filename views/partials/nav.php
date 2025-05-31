@@ -20,7 +20,7 @@
 
             <form action="/" method="post" >
 
-             <input type="submit" name="logout" value="logout">
+             <input type="submit" name="logout" class="btn login"  value="تسجيل الخروج">
              </form>
             <?php else : ?>
 

@@ -58,7 +58,7 @@
     <div class="table_div"  >
 <h2>قائمة المستخدمين</h2>
 
-<a href="/users/create" class="add-user-btn">➕ إضافة مستخدم جديد</a>
+<a href="/users_create" class="add-user-btn">➕ إضافة مستخدم جديد</a>
 
 <table>
   <tr>

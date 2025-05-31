@@ -80,11 +80,14 @@
                         <a href="/show?research_id=<?= htmlspecialchars($researche['research_id']) ?>" class="btn read-more">قراءة البحث</a>
                             <!-- <button class="btn-icon remove-favorite" title="إزالة من المفضلة"><i class="fas fa-trash-alt"></i></button> -->
                                      <!-- زر حذف باستخدام JavaScript -->
-                                         <form method="POST" action="/removefav" style="margin-top:10px;">
-            <input type="hidden" name="research_id" value="<?= $researche['research_id'] ?>">
+
+
+                                         <!-- <form method="POST" action="/removefav" style="margin-top:10px;">
+            <input type="hidden" name="research_id" value="<//?= $researche['research_id'] ?>">
             <button type="submit">🗑️ إزالة من المفضلة</button>
-        </form>
-        <!-- <button onclick="removeFromFavorites(<?//= $researche['research_id'] ?>)">🗑️ إزالة من المفضلة</button> -->
+        </form> -->
+
+        <button onclick="removeFromFavorites(<?= $researche['research_id'] ?>)">🗑️ إزالة من المفضلة</button>
                             <button class="btn-icon share-research" title="مشاركة"><i class="fas fa-share-alt"></i></button>
                         </div>
                     </div>
@@ -116,7 +119,7 @@
         function removeFromFavorites(researchId) {
     if (!confirm("هل أنت متأكد من حذف هذا البحث من المفضلة؟")) return;
 
-    fetch('/removefav.php', {
+    fetch('/removefav', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'

@@ -88,5 +88,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 } else {
     echo "❌ يجب إرسال النموذج باستخدام POST.";
 }
-require "views/research/create_view.php";
+require "views/create_view.php";
 ?>

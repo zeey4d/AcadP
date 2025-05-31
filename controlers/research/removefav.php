@@ -27,6 +27,8 @@ use core\Database;
 //     echo "invalid";
 // }
 
+$db = App::resolve(Database::class);
+
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['research_id']) && is_numeric($_POST['research_id'])) {
@@ -37,7 +39,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['research_id']) && is_
         die("❌ المستخدم غير مسجل الدخول.");
     }
 
-    $db = App::resolve(Database::class);
 
     $db->query("DELETE FROM favorites WHERE user_id = :user_id AND research_id = :research_id", [
         'user_id' => $userId,

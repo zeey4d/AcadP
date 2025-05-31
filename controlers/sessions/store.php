@@ -38,13 +38,13 @@ $user = $db->query("select * from users where email = :email ; ", [
 
 
 
-// if ($user) {
-//     if ($_POST['password'] == $user['password']) {
-//         logIn($user);
-//         header("Location: /");
-//         exit();
-//     }
-// }
+if ($user) {
+    if ($_POST['password'] == $user['password']) {
+        logIn($user);
+        header("Location: /");
+        exit();
+    }
+}
 
 if ($user) {
     if (password_verify($_POST['password'], $user['password'])) {

@@ -1,6 +1,6 @@
 <?php
 $filename = isset($_GET['file']) ? basename($_GET['file']) : null;
-$filePath = __DIR__ . '/views/media/pdfs/' . $filename;
+$filePath = __DIR__ . 'views/media/pdfs/' . $filename;
 
 if ($filename && file_exists($filePath)) {
     header('Content-Description: File Transfer');

@@ -51,6 +51,7 @@ $router->get('/cart', 'controlers/cart.php')->only('registered');
 $router->post('/research_addff', 'controlers/research/add.php')->only('registered');
 
 $router->post('/removefav', 'controlers/research/removefav.php')->only('registered');
+// $router->get('/removefav', 'controlers/research/removefav.php');
 $router->get('/research_delete', 'controlers/research/research_delete.php');
 $router->get('/research_edit', 'controlers/research/research_edit.php');
 

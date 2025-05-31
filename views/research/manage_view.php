@@ -182,6 +182,9 @@
     </style>
     <div class="container" style="margin-top: 150px;">
         <h1>إدارة الأبحاث</h1>
+      <a href="/create" class="btn primary" style="background-color: #007bff; color: white; padding: 8px 15px; border-radius: 5px; text-decoration: none;">
+        <i class="fas fa-plus"></i> إضافة بحث جديد
+      </a>
         
         <?php if (empty($researches)): ?>
             <div class="empty-state">
@@ -268,7 +271,7 @@
 <!--           
         </tbody>
       </table>
-    </div> --> -->
+    </div> --> 
 
     <!-- نموذج حذف البحث -->
     <div id="deleteModal" class="modal" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); justify-content: center; align-items: center;">

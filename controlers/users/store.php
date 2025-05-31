@@ -11,6 +11,8 @@ $email = $_POST['email'];
 $password   = $_POST['password']   ;
  $university = $_POST['university'] ;
  $department = $_POST['department'];
+ $type =  $_POST['type'];
+
 
 $erorrs = [] ;
 
@@ -37,10 +39,11 @@ if($user){
     header("Location: /");
 }else{
    
-    $db->query('INSERT INTO users (username , email , password,university,department ) VALUES (:username ,:email , :password ,:university, :department );',[
+    $db->query('INSERT INTO users (username , email , password,type,university,department ) VALUES (:username ,:email , :password , :type,:university, :department );',[
         'username' => $username,
         'email' => $email,
         'password' =>password_hash($password ,PASSWORD_BCRYPT ) ,
+        'type' => $type,
         'university' => $university,
         'department' => $department,
     ]

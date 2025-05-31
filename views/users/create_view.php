@@ -54,13 +54,19 @@
                                 <option value="editor">محرر</option>
                                 <option value="institution">مؤسسة</option> -->
                                             <option value="normal">عادي</option>
-            <option value="admin">مسؤول</option>
+            <option value="admin" name= "type" >مسؤول</option>
             <option value="manager">مدير</option>
                             </select>
                             <i class="fas fa-user-tag"></i>
                         </div>
 
-                                    <div class="form-group">
+                             <div class="form-group">
+                            <!-- <label for="type"> نوع مسجل الدخول  </label> -->
+                            <input type="hidden" id="email" name="type" value="admin" required placeholder="type">
+                            <!-- <i class="fas fa-envelope"></i> -->
+                        </div>
+
+                            <div class="form-group">
                             <label for="university">الجامعة  </label>
                             <input type="text" id="email" name="university" required placeholder="أدخل اسم الجامعة">
                             <i class="fas fa-envelope"></i>
